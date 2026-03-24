@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Renaud Games — Arcade</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
+  <div class="container">
+    <section class="hero glass">
+      <div class="brand">
+        <div class="logo"><img src="img/logo.svg" alt="Renaud Games"></div>
+        <div>
+          <div class="small">Mini arcade</div>
+          <h1>Renaud Games</h1>
+        </div>
+      </div>
+      <p class="subtitle">Développé par Renaud : plusieurs mini-jeux, un vrai module de mots croisés, un Snake amélioré, un Zombie survie plus vivant et un Memory bonus.</p>
+      <div class="topbar">
+        <a class="btn" href="index.html">🏠 Accueil</a>
+        <button class="btn secondary" onclick="toggleSound()"><span id="soundLabel">🔊 Son activé</span></button>
+        <button class="btn secondary" onclick="resetScores()">♻️ Réinitialiser scores</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong id="statCross">0</strong><span>Mots croisés réussis</span></div>
+        <div class="stat"><strong id="statSnake">0</strong><span>Meilleur Snake</span></div>
+        <div class="stat"><strong id="statZombie">0</strong><span>Meilleur Zombie</span></div>
+        <div class="stat"><strong id="statTotal">0</strong><span>Total points</span></div>
+      </div>
+    </section>
+
+    <section class="glass screen-inner" style="margin-top:20px;">
+      <div class="nav-grid">
+        <a class="nav-card" href="crossword.html"><div class="icon">🧠</div><h3>Mots croisés</h3><p class="note">Grille, indices, difficulté, taille, aide lettre, révéler un mot, score sauvegardé.</p></a>
+        <a class="nav-card" href="snake.html"><div class="icon">🐍</div><h3>Snake</h3><p class="note">Tête de serpent, traversée des murs, vitesse progressive et meilleur score.</p></a>
+        <a class="nav-card" href="zombie.html"><div class="icon">🧟</div><h3>Zombie Survival</h3><p class="note">Déplacement, tir vers la souris, vagues d’ennemis, loot et survie arcade.</p></a>
+        <a class="nav-card" href="memory.html"><div class="icon">🃏</div><h3>Memory</h3><p class="note">Un petit jeu bonus rapide, simple et propre pour enrichir le site.</p></a>
+      </div>
+    </section>
+
+    <section class="glass screen-inner" style="margin-top:18px;">
+      <div class="section-head">
+        <div>
+          <h2>Conseil : se joue principalement sur PC</h2>
+          <p class="note">Ce site se joue principalement sur PC pour une meilleure expérience, avec clavier et souris. Certains jeux restent utilisables sur mobile, mais les contrôles sont optimisés pour ordinateur.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>Renaud Games — Arcade</footer>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
