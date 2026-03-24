@@ -211,42 +211,46 @@ function tryBuildPuzzle(sourcePuzzle, chosenSize) {
   return puzzle;
 }
 
-function pickPuzzle(category, difficulty, chosenSize) {
+function pickPuzzle(category, difficulty, chosenSize){
   const list = (crosswordBank[category]?.[difficulty] || [])
-    .filter((p) => p.size <= chosenSize)
-    .map((p) => tryBuildPuzzle(p, chosenSize))
+    .filter(p => p.size === chosenSize)
+    .map(p => tryBuildPuzzle(p, p.size))
     .filter(Boolean);
 
-  if (!list.length) return null;
+  if(!list.length) return null;
   return list[Math.floor(Math.random() * list.length)];
 }
 
-function generateCrossword() {
+function generateCrossword(){
   const category = document.getElementById('cwCategory').value;
   const difficulty = document.getElementById('cwDifficulty').value;
   const chosenSize = Number(document.getElementById('cwSize').value);
 
-  let puzzle = pickPuzzle(category, difficulty, chosenSize);
+  const puzzle = pickPuzzle(category, difficulty, chosenSize);
 
-  if (!puzzle) {
-    const fallbackOrder = ['facile', 'moyen', 'difficile'].filter((d) => d !== difficulty);
-
-    for (const altDifficulty of fallbackOrder) {
-      puzzle = pickPuzzle(category, altDifficulty, chosenSize);
-      if (puzzle) break;
-    }
-  }
-
-  if (!puzzle) {
+  if(!puzzle){
     document.getElementById('cwGrid').innerHTML = '';
     document.getElementById('cwClues').innerHTML = '';
     document.getElementById('cwFeedback').innerHTML =
-      '<span class="bad">Impossible de générer une grille avec ces paramètres.</span>';
+      '<span class="bad">Aucune vraie grille disponible pour cette catégorie, difficulté et taille.</span>';
     document.getElementById('cwProgressLabel').textContent = '0%';
     document.getElementById('cwProgressBar').style.width = '0%';
     document.getElementById('cwGridScore').textContent = '0';
     return;
   }
+
+  crosswordState.puzzle = puzzle;
+  crosswordState.cells = [];
+  crosswordState.selectedWordIndex = 0;
+  crosswordState.score = 0;
+  crosswordState.solved = false;
+
+  renderCrossword();
+  updateCrosswordProgress();
+
+  document.getElementById('cwFeedback').innerHTML =
+    `<span class="good">Nouvelle grille générée en ${puzzle.size}x${puzzle.size}.</span>`;
+}
 
   crosswordState.puzzle = puzzle;
   crosswordState.cells = [];
